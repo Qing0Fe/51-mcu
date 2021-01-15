@@ -1,0 +1,6 @@
+".\Objects\STARTUP.obj",
+".\Objects\temper.obj",
+".\Objects\main.obj",
+".\Objects\LEDdisplay.obj" 
+TO ".\Objects\temper" 
+PRINT(".\Listings\temper.m51") RAMSIZE(256) 

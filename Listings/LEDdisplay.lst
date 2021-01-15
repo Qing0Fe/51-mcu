@@ -1,0 +1,60 @@
+C51 COMPILER V9.60.0.0   LEDDISPLAY                                                        01/15/2021 20:26:42 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LEDDISPLAY
+OBJECT MODULE PLACED IN .\Objects\LEDdisplay.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE LEDdisplay.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listing
+                    -s\LEDdisplay.lst) TABS(2) OBJECT(.\Objects\LEDdisplay.obj)
+
+line level    source
+
+*** WARNING C500 IN LINE 1 OF LEDdisplay.c: LICENSE ERROR (R207(3): REGISTRY READ ERROR)
+
+   1          #include "LEDdisplay.h"
+   2          
+   3          char table[] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x27,0x7f,0x6f,
+   4                          0xbf,0x86,0xdb,0xcf,0xe6,0xed,0xfd,0xa7,0xff,0xef};
+   5          char led_num[] = {0,0,0,0};
+   6          char current_led = 0;
+   7          
+   8          void single_led(char posi, char outdata){
+   9   1          
+  10   1        leddata = table[outdata];
+  11   1        switch(posi){
+  12   2          case 0: wei1 = 1, wei2 = 0, wei3 = 0, wei4 = 0; break;
+  13   2          case 1: wei1 = 0, wei2 = 1, wei3 = 0, wei4 = 0; break;
+  14   2          case 2: wei1 = 0, wei2 = 0, wei3 = 1, wei4 = 0; break;
+  15   2          case 3: wei1 = 0, wei2 = 0, wei3 = 0, wei4 = 1; break;
+  16   2        }
+  17   1      }
+  18          
+  19          void set_disp_int(int num){
+  20   1        if(current_led == 0){
+  21   2          led_num[0] = num/1000;
+  22   2          led_num[1] = num%1000/100 + 10;
+  23   2          led_num[2] = num%100/10;
+  24   2          led_num[3] = num%10;
+  25   2        }
+  26   1        
+  27   1        single_led(current_led, led_num[current_led]);
+  28   1        current_led++;
+  29   1        current_led &= 0x03;
+  30   1      }
+  31          
+  32          void close_led(){
+  33   1        wei1 = 0, wei2 = 0, wei3 = 0, wei4 = 0;
+  34   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    173    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     25    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
