@@ -1,6 +1,4 @@
 
-/*OneWire×ÜÏß*/
-
 #include "temper.h"
 
 void DelayX2us(uchar t){
